@@ -19,15 +19,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run ci
       - run: npm ci
-      - name: Run build
       - run: npm run build --if-present
       - run: echo 'Build end'
-      - name: 'Run unit tests'
       - run: npm test:unit
       - run: echo 'Unit tests end'
-      - name: 'Tests e2e'
       - run: npm test:e2e
       - run: echo 'Tests e2e end'
       - run: echo "🍏 This job's status is ${{ job.status }}."
