@@ -1,11 +1,7 @@
 
 name: App Quality Check CI
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    types: [opened, reopened, synchronize, labeled]
+on: [push]
 
 jobs:
   build:
@@ -17,6 +13,7 @@ jobs:
         node-version: [10.x, 12.x, 14.x, 15.x]
 
     steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -25,3 +22,4 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm test
+      - run: echo "🍏 This job's status is ${{ job.status }}."
