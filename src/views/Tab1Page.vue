@@ -12,7 +12,7 @@
         </ion-toolbar>
       </ion-header>
       <ExploreContainer name="Accueil de l'application" :personns="state.personns" :plateform="state.plateform"/>
-      <p v-if="state.plateform.includes('mobile')">Vous êtes sur un mobile</p>
+      <p v-if="state.plateform.includes('mobile')">Vous êtes sur un téléphone</p>
       <p v-else>Vous êtes sur un ordinateur</p>
     </ion-content>
   </ion-page>
