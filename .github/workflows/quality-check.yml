@@ -21,9 +21,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run build --if-present
-      - run: echo 'Build end'
-      - run: npm test:unit
-      - run: echo 'Unit tests end'
-      - run: npm test:e2e
+      - run: npm run test:unit
+      - run: npm run test:e2e
       - run: echo 'Tests e2e end'
       - run: echo "🍏 This job's status is ${{ job.status }}."
