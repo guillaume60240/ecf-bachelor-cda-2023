@@ -15,4 +15,7 @@ export default defineComponent({
     IonRouterOutlet
   }
 });
+//no build no dist folder in ./electron
+// ./build become after npm run build in ./electron
+// 
 </script>

@@ -7,9 +7,13 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "android:open": "npx cap open android",
+    "capacitor:build": "npx cap copy && npx cap sync",
+    "build:all": "npm run build && npm run capacitor:build && npm run android:open && cp -r ./dist ./electron/app && npm --prefix ./electron run build && npm --prefix ./electron run electron:make"
   },
   "dependencies": {
+    "@capacitor/android": "4.6.1",
     "@capacitor/app": "4.1.1",
     "@capacitor/core": "4.6.1",
     "@capacitor/haptics": "4.1.0",

@@ -1,19 +1,27 @@
 <template>
   <div id="container">
-    <strong>{{ name }}</strong>
+    <strong>{{ props.name }}</strong>
     <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <template v-for="personn in props.personns" :key="personn.name">
+      <p >{{ personn.name }} - {{ personn.age }} ans - {{ personn.status }}</p>
+     <button v-if="props.plateform.includes('mobile') && personn.status === 'En attente'">Démarrer</button>
+     <button v-else-if="props.plateform.includes('mobile') && personn.status === 'En cours'">Arréter</button>
+    </template>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { defineProps } from 'vue';
 
-export default defineComponent({
-  name: 'ExploreContainer',
-  props: {
-    name: String
-  }
-});
+const props = defineProps<{
+  name: string;
+  personns: {
+    name: string;
+    age: number;
+    status: "En attente" | "En cours" | "Terminé"
+  }[];
+  plateform: ("mobile" | "ios" | "ipad" | "iphone" | "android" | "phablet" | "tablet" | "cordova" | "capacitor" | "electron" | "pwa" | "mobileweb" | "desktop" | "hybrid")[];
+}>();
 </script>
 
 <style scoped>

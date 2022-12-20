@@ -2,28 +2,54 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Tab 3</ion-title>
+        <ion-title>En cours</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Tab 3</ion-title>
+          <ion-title size="large">En cours</ion-title>
         </ion-toolbar>
       </ion-header>
       
-      <ExploreContainer name="Tab 3 page" />
+      <ExploreContainer name="Game en cours" :personns="state.personns" :plateform="state.plateform"/>
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 
-export default defineComponent({
-  name: 'Tab3Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage }
+import { getPlatforms } from '@ionic/vue';
+import { computed, reactive } from 'vue';
+
+const plateform  = computed(() => {
+  return getPlatforms();
 });
+
+const state = reactive<
+  {
+    plateform: ("mobile" | "ios" | "ipad" | "iphone" | "android" | "phablet" | "tablet" | "cordova" | "capacitor" | "electron" | "pwa" | "mobileweb" | "desktop" | "hybrid")[];
+    isMobile: boolean;
+    personns: {
+      name: string;
+      age: number;
+      status: "En attente" | "En cours" | "Terminé"
+    }[];
+  }
+>(
+  {
+    plateform: plateform.value,
+    isMobile: false,
+    personns: [
+      {
+        name: 'Jane',
+        age: 21,
+        status: "En cours"
+      }
+    ]
+  }
+);
+
 </script>
