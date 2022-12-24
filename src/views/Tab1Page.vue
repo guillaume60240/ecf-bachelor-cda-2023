@@ -14,6 +14,7 @@
       <ExploreContainer name="Accueil de l'application" :personns="state.personns" :plateform="state.plateform"/>
       <p v-if="state.plateform.includes('mobile')">Vous êtes sur un téléphone</p>
       <p v-else>Vous êtes sur un ordinateur</p>
+      <p>Test de variable: {{ testVariable }}</p>
     </ion-content>
   </ion-page>
 </template>
@@ -24,6 +25,8 @@ import ExploreContainer from '@/components/ExploreContainer.vue';
 
 import { getPlatforms } from '@ionic/vue';
 import { computed, reactive } from 'vue';
+
+const testVariable = process.env.VUE_APP_TEST_VARIABLE;
 
 const plateform  = computed(() => {
   return getPlatforms();
