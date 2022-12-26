@@ -16,13 +16,12 @@ jobs:
         node-version: [17.x]
 
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Cypress debug logs 📝
+        uses: ./
+        env:
+          DEBUG: '@cypress/github-action'
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: npm run build
-      - run: npm run test:e2e
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          working-directory: ./
