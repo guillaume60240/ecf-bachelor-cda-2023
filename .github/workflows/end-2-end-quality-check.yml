@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
-          start: npm start
-          wait-on: "http://localhost:5000"
+          start: npm serve
+          wait-on: "http://localhost:8080"
           browser: chrome
           headless: true
       - uses: actions/upload-artifact@v1
