@@ -106,6 +106,8 @@ That build the project, create the APK in the ```./android```directory, open And
 :white_check_mark: Now enjoy and work to your multi-platform app!! :rocket:
 
 ## Run the app in Docker
-if you have Docker you can run the app in it with this commands:
+If you have Docker you can run the app in it with this commands:
 ```bash
-docker build -t image-name .
+docker compose up
+```
+That will build the app image and run it on ```localhost:8080```

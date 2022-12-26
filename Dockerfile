@@ -11,13 +11,14 @@ RUN echo "Install dependencies"
 ADD ./package.json ./
 RUN npm install
 
-# build
+# build ionic app
 FROM package as builder
 ARG ENVIRONMENT=production
 WORKDIR /home/node/ecf-mobile-desktop
 
 ADD ./ ./
-RUN cp .env .env.local
+RUN cp .env .env.local || cp .env.dist .env.local
+RUN echo "Build app"
 RUN npm run build
 
 # production image

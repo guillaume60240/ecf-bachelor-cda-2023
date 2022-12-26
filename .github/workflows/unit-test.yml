@@ -1,7 +1,13 @@
 
-name: Quality check
+name: Unit test
 
-on: [push]
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - "master"
+
 
 jobs:
   build:
@@ -20,5 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run lint
-      - run: echo "🍏 lint is ${{ job.status }}."
+      - run: npm run build
+      - run: npm run test:unit
+      - run: echo "🍏 This job's status is ${{ job.status }}."
