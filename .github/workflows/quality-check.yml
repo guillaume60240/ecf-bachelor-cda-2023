@@ -23,3 +23,31 @@ jobs:
       - run: npm run build
       - run: npm run test:unit
       - run: echo "🍏 This job's status is ${{ job.status }}."
+
+# test e2e on merge
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - "master"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [17.x]
+
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:e2e
+      - run: echo "🍏 This job's status is ${{ job.status }}."
