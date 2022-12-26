@@ -29,6 +29,7 @@ jobs:
 
     - name: Run tests
       run: npm run test:e2e
+      run: npx cypress run
 
     - name: Stop containers
       if: always()
