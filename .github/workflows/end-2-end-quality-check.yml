@@ -1,4 +1,4 @@
-name: App Quality Check E2E CI
+name: App E2E CI
 
 on:
   pull_request:
@@ -8,20 +8,15 @@ on:
       - "master"
 
 jobs:
-  build:
+  checkout-and-test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [17.x]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
 
-      - name: Cypress debug logs 📝
-        uses: ./
-        env:
-          DEBUG: '@cypress/github-action'
-        with:
-          working-directory: ./
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: run cypress tests with firefox
+        uses: cypress-io/github-action@v2
+        timeout-minutes: 10
+        
