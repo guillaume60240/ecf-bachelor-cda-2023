@@ -8,30 +8,23 @@ on:
       - "master"
 
 jobs:
-  docker:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-
+  cypress-run:
+    runs-on: ubuntu-20.04
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
-
-    - name: Start containers
-      run: docker-compose -f "docker-compose.yml" up -d --build
-
-    - name: Install node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 14.x
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run tests
-      run: npm run test:e2e
-    - name: Run Cypress
-      run: npx cypress run
-
-    - name: Stop containers
-      if: always()
-      run: docker-compose -f "docker-compose.yml" down
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          wait-on: "http://localhost:5000"
+          browser: chrome
+          headless: true
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+      - uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: cypress-videos
+          path: cypress/videos
