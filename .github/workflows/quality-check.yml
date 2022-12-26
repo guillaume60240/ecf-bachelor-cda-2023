@@ -1,5 +1,5 @@
 
-name: Unit test
+name: Quality check
 
 on: [push]
 
