@@ -22,7 +22,9 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: run cypress tests with firefox
+      - name: run cypress tests with chrome
         uses: cypress-io/github-action@v2
         timeout-minutes: 10
+        with: 
+          browser: chrome
         
