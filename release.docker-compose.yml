@@ -1,5 +1,5 @@
 services:
-  ecf-mobile-desktop:
+  ecf-mobile-desktop-electron-test:
     build:
       context: .
       dockerfile: release.Dockerfile
