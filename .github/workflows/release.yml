@@ -1,6 +1,6 @@
 name: Make a new release
 
-on: [push]
+on: [release]
 
 jobs:
   build:

@@ -46,7 +46,7 @@ ENV APP_NAME=ecf-mobile-desktop
 
 # Copy the .apk to /app/tempory/
 RUN echo "Copying apk to root project"
-COPY --from=capacitor /home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk /app/tempory/app-debug.apk
+COPY --from=capacitor /home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk /app/artifacts/app-debug.apk
 
 RUN sed -i '1idaemon off;' /etc/nginx/nginx.conf
 ADD ./spa.nginx.conf /etc/nginx/conf.d/default.conf
