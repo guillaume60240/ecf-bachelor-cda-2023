@@ -27,6 +27,9 @@ RUN npm run capacitor:build
 RUN echo "Copying files"
 RUN cp -r ./dist ./electron/app
 
+RUN echo "Installing electron dependencies"
+RUN npm --prefix ./electron install
+
 RUN echo "Building electron app"
 RUN npm --prefix ./electron run build && npm --prefix ./electron run electron:make
 
