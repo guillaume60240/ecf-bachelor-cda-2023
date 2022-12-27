@@ -21,6 +21,13 @@ RUN cp .env .env.local || cp .env.dist .env.local
 RUN echo "Build app"
 RUN npm run build
 
+# build capacitor app
+FROM builder as capacitor
+ARG ENVIRONMENT=production
+WORKDIR /home/node/ecf-mobile-desktop
+RUN echo "Build capacitor app"
+RUN npm run capacitor:build
+
 # RUN echo "Copying files"
 # RUN cp -r ./dist ./electron/app
 
@@ -47,7 +54,7 @@ ENV APP_NAME=ecf-mobile-desktop
 # Copie du fichier /home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk du conteneur builder vers l'hôte
 # RUN docker cp $CONTAINER_ID:/home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk ~desktop/build/app-mobile-lastest.apk
 # Copy the .apk to /app
-COPY --from=builder /home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk /app/app-mobile-lastest.apk
+COPY --from=capacitor /home/node/ecf-mobile-desktop/android/app/build/outputs/apk/debug/app-debug.apk /app/app-mobile-lastest.apk
 
 RUN sed -i '1idaemon off;' /etc/nginx/nginx.conf
 ADD ./spa.nginx.conf /etc/nginx/conf.d/default.conf
