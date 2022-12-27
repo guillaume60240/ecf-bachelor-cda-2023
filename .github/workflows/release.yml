@@ -1,0 +1,29 @@
+name: Make a new release
+
+
+on: [push]
+
+jobs:
+  build:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Start containers
+        run: docker-compose -f "docker-compose.yml" up -d --build
+      - name: Install node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.x
+
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Show github env
+        run: echo "event name => ${{ github.event_name }} username => ${{ github.actor }}"
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose -f "docker-compose.yml" down
