@@ -28,6 +28,9 @@ WORKDIR /home/node/ecf-mobile-desktop
 RUN echo "Build capacitor app"
 RUN npm run capacitor:build
 
+COPY /home/node/ecf-mobile-desktop/android/ /app/artifacts/
+
+
 # production image
 FROM --platform=${BUILDPLATFORM} nginx:$NGINX_VERSION as production
 ARG APP_VERSION
@@ -38,8 +41,6 @@ ENV APP_NAME=ecf-mobile-desktop
 RUN sed -i '1idaemon off;' /etc/nginx/nginx.conf
 ADD ./spa.nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /home/node/ecf-mobile-desktop/dist/ ./
-
-COPY --from=capacitor /home/node/ecf-mobile-desktop/android/ /app/artifacts/
 
 EXPOSE 80
 CMD ["nginx"]
