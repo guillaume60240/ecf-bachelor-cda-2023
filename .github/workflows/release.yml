@@ -24,6 +24,9 @@ jobs:
       - name: Show github env
         run: echo "event name => ${{ github.event_name }} username => ${{ github.actor }}"
 
+      - name: Test build app
+        run: npm run build:all
+
       - name: Stop containers
         if: always()
         run: docker-compose -f "docker-compose.yml" down
