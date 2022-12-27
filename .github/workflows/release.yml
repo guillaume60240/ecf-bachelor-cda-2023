@@ -17,7 +17,7 @@ jobs:
       - name: Copy APK file
         run: docker create --name tmp my-image
       - name: Copy file
-        run: docker cp tmp:/app/app-mobile-lastest.apk .
+        run: docker cp tmp:/app/tempory/app-debug.apk .
       - name: Remove tmp
         run: docker rm -f tmp
       - name: Release APK on GitHub
