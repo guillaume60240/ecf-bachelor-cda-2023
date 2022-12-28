@@ -1,7 +1,0 @@
-services:
-  ecf-mobile-desktop-electron-test:
-    build:
-      context: .
-      dockerfile: release.Dockerfile
-    ports:
-      - "8080:80"
