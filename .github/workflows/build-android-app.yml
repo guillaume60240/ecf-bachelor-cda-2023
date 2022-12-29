@@ -1,13 +1,9 @@
 name: Deploy releases as artefacts
 
 on: [push]
-env:
-  REGISTRY: ghcr.io
-  #IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/release-ionic-app:latest
-  ANDROID_HOME: .
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,9 +12,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: android
-          path: ./release/ionic-release.apk
+          path: ./releases/ionic-release.apk
          
-     
-      
-      
-     
