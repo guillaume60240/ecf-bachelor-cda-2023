@@ -48,17 +48,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Release
-        id: create_android_release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}-android
+          release_name: Release ${{ github.ref }} android
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        id: upload-android-release-asset 
+        id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -76,17 +76,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Release
-        id: create_ios_release
+        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.ref }}-ios
+          release_name: Release ${{ github.ref }} ios
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        id: upload-ios-release-asset 
+        id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
