@@ -1,6 +1,9 @@
 name: Deploy releases as artefacts
 
-on: [push]
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   quality-check:
