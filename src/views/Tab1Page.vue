@@ -8,7 +8,7 @@
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Accueil</ion-title>
+          <ion-title size="large">Accueil v2</ion-title>
         </ion-toolbar>
       </ion-header>
       <ExploreContainer name="Accueil de l'application" :personns="state.personns" :plateform="state.plateform"/>
