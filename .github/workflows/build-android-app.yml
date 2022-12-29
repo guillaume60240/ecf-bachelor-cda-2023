@@ -1,4 +1,4 @@
-name: Build Android app
+name: Deploy releases as artefacts
 
 on: [push]
 env:
@@ -12,34 +12,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      #- name: Login to Github Container Registry
-      #  uses: docker/login-action@v1
-      # with:
-      #    registry: ghcr.io
-      #    username: ${{ github.repository_owner }}
-      #    password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 17.x
-      - name: Install app dependencies
-        run: npm install
-      - name: Install electron dependencies
-        run: npm install --prefix ./electron
-      - name: Install ionic cli
-        run: npm install -g @ionic/cli
-      - name: Build ionic app
-        run: ionic build
-      - name: Run Capacitor
-        run: npm run capacitor:build
-      - name: Copy dist to electron
-        run: cp -r ./dist ./electron/app
-      - name: Build electron app
-        run: npm --prefix ./electron run build
-      - name: Upload artifact
+      - name: Upload Android  
         uses: actions/upload-artifact@v2
         with:
-          name: release-electron-app
-          path: ./electron/dist
+          name: android
+          path: ./release/ionic-release.apk
+         
+     
+      
       
      

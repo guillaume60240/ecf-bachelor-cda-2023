@@ -10,7 +10,10 @@
     "lint": "vue-cli-service lint",
     "android:open": "npx cap open android",
     "capacitor:build": "npx cap copy && npx cap sync",
-    "build:all": "npm run build && npm run capacitor:build && npm run android:open && cp -r ./dist ./electron/app && npm --prefix ./electron run build && npm --prefix ./electron run electron:make"
+    "build:all": "npm run build && npm run capacitor:build && npm run android:open && cp -r ./dist ./electron/app && npm --prefix ./electron run build && npm --prefix ./electron run electron:make",
+    "copy:electron": "cp ./electron/dist/*.dmg ./releases/electron-release.dmg",
+    "copy:apk": "cp ./android/app/build/outputs/apk/debug/app-debug.apk ./releases/ionic-release.apk",
+    "copy:all": "npm run copy:electron && npm run copy:apk"
   },
   "dependencies": {
     "@capacitor/android": "4.6.1",
