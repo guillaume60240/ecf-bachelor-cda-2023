@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Accueil</ion-title>
+        <ion-title>Accueil v2</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
@@ -12,15 +12,23 @@
         </ion-toolbar>
       </ion-header>
       <ExploreContainer name="Accueil de l'application" :personns="state.personns" :plateform="state.plateform"/>
-      <p v-if="state.plateform.includes('mobile')">Vous êtes sur un téléphone</p>
-      <p v-else>Vous êtes sur un ordinateur</p>
-      <p>Test de variable: {{ testVariable }}</p>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <p v-if="state.plateform.includes('mobile')">Vous êtes sur un téléphone</p>
+            <p v-else>Vous êtes sur un ordinateur</p>
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Test de variable: {{ testVariable }}</p>
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 import ExploreContainer from '@/components/ExploreContainer.vue';
 
 import { getPlatforms } from '@ionic/vue';
@@ -65,5 +73,13 @@ const state = reactive<
     ]
   }
 );
-console.log(state)
 </script>
+
+<style scoped>
+ion-card {
+  margin: 2em;
+}
+ion-card-header {
+  text-align: center;
+}
+</style>

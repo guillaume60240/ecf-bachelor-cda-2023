@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>En cours</ion-title>
+        <ion-title>En cours v2</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true">
