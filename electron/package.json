@@ -1,14 +1,14 @@
 {
-  "name": "test-project",
+  "name": "test-project-macos",
   "version": "1.0.1",
   "description": "An Amazing Capacitor App",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Lepoetre Guillaume",
+    "email": "guillaume.lepoetre@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/guillaume60240/ecf-bachelor-cda-2023"
   },
   "license": "MIT",
   "main": "build/src/index.js",
